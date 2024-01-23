@@ -20,27 +20,23 @@
     height: 40%;
 }
 
-.login-form-mode {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-}
-
-/* #demo-radio-buttons-group-label {
-    color: rgb(190, 0, 0);
-} */
-
-.login-form-texts {
-    color: rgb(190, 0, 0);
-}
-
-.login-mode-texts {
+.login-title-texts {
     color: rgb(190, 0, 0);
     font-family: "Roboto", sans-serif;
 
     cursor: pointer;
 }
 
-.login-mode-texts:hover {
+.login-title-texts:hover {
     transform: scale(1.1);
+}
+
+.login-form-mode {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.login-form-texts {
+    color: rgb(190, 0, 0);
 }

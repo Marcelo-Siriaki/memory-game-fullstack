@@ -128,11 +128,11 @@ const Login = () => {
                 :
                 (<div className="login-title-container">
                     <h1
-                        className="login-mode-texts"
+                        className="login-title-texts"
                         onClick={handleStartGame}
                     >Start Game</h1>
                     <h1
-                        className="login-mode-texts"
+                        className="login-title-texts"
                         onClick={() => setMode(true)}
                     >
                         Mode

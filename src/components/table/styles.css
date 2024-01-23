@@ -1,4 +1,4 @@
-.home-container {
+.table-container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -8,4 +8,9 @@
 
     background: linear-gradient(180deg, #000 0%, rgba(15, 13, 15, 0.65) 100%);
     box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.teste {
+    color: white;
+    font-size: xx-large;
 }
