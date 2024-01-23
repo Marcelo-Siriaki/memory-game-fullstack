@@ -1,14 +1,98 @@
 import React, { useState } from "react";
-import "./styles.css";
 import useUser from "../../hooks/useUser";
+import "./styles.css";
+
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormLabel from '@mui/material/FormLabel';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import { useNavigate } from "react-router-dom";
+
+export function Radio3ButtonsGroup({ onChangeDifficult }) {
+    return (
+        <FormControl>
+            <FormLabel id="demo-radio-buttons-group-label">Difficult</FormLabel>
+            <RadioGroup
+                aria-labelledby="demo-radio-buttons-group-label"
+                defaultValue="female"
+                name="radio-buttons-group"
+                onChange={onChangeDifficult}
+            >
+                <FormControlLabel
+                    className="login-form-texts"
+                    value="easy"
+                    control={<Radio />}
+                    label="Easy"
+                />
+                <FormControlLabel
+                    className="login-form-texts"
+                    value="medium"
+                    control={<Radio />}
+                    label="Medium" />
+                <FormControlLabel
+                    className="login-form-texts"
+                    value="hard"
+                    control={<Radio />}
+                    label="Hard" />
+            </RadioGroup>
+        </FormControl>
+    );
+}
+
+export function Radio2ButtonsGroup({ onChangeDisplay }) {
+    return (
+        <FormControl>
+            <FormLabel id="demo-radio-buttons-group-label">Display Mode</FormLabel>
+            <RadioGroup
+                aria-labelledby="demo-radio-buttons-group-label"
+                defaultValue="female"
+                name="radio-buttons-group"
+                onChange={onChangeDisplay}
+            >
+                <FormControlLabel
+                    className="login-form-texts"
+                    value={true}
+                    control={<Radio />}
+                    label="Show all cards before start"
+                />
+                <FormControlLabel
+                    className="login-form-texts"
+                    value={false}
+                    control={<Radio />}
+                    label="Don't show any card before start"
+                />
+            </RadioGroup>
+        </FormControl>
+    );
+}
+
+export function BasicButtons() {
+    return (
+        <Stack spacing={2} direction="row">
+            <Button
+                variant="outlined"
+                type="submit"
+            >
+                Ready!
+            </Button>
+        </Stack>
+    );
+}
+
 
 const Login = () => {
     const [mode, setMode] = useState(false);
+    const navigate = useNavigate();
     const { gameMode, setGameMode } = useUser();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setMode(false);
+        console.log(gameMode);
     }
 
     const handleSelectDifficult = (e) => {
@@ -19,6 +103,10 @@ const Login = () => {
         setGameMode({ ...gameMode, showAll: e.target.value });
     }
 
+    const handleStartGame = () => {
+        navigate("/home");
+    }
+
     return (
         <div className="login-container">
             {mode ?
@@ -27,35 +115,28 @@ const Login = () => {
                         className="login-form-mode"
                         onSubmit={handleSubmit}
                     >
-                        <label>
-                            Select difficult
-                            <select
-                                onChange={(e) => handleSelectDifficult(e)}
-                                value={gameMode.difficult}
-                            >
-                                <option value="easy">Easy</option>
-                                <option value="medium">Medium</option>
-                                <option value="hard">Hard</option>
-                            </select>
-                        </label>
-                        <label>
-                            Select display option
-                            <select
-                                onChange={handleSelectDisplay}
-                                value={gameMode.showAll}
-                            >
-                                <option value={true}>Show all cards before start</option>
-                                <option value={false}>Don't show any card</option>
-                            </select>
-                        </label>
+                        <Radio3ButtonsGroup
+                            onChangeDifficult={handleSelectDifficult}
+                        />
+                        <Radio2ButtonsGroup
+                            onChangeDisplay={handleSelectDisplay}
+                        />
 
-                        <button type="submit">Ready</button>
+                        <BasicButtons />
                     </form>
                 </div>)
                 :
                 (<div className="login-title-container">
-                    <h1>Start Game</h1>
-                    <h1 onClick={() => setMode(true)}>Mode</h1>
+                    <h1
+                        className="login-mode-texts"
+                        onClick={handleStartGame}
+                    >Start Game</h1>
+                    <h1
+                        className="login-mode-texts"
+                        onClick={() => setMode(true)}
+                    >
+                        Mode
+                    </h1>
                 </div>)}
         </div>
     )
