@@ -7,9 +7,13 @@ export function useUserProvider() {
     difficult: "easy"
   });
 
+  const [resetedCards, setResetedCards] = useState(false);
+
 
   return {
     gameMode,
     setGameMode,
+    resetedCards,
+    setResetedCards,
   }
 }

@@ -4,8 +4,10 @@ import useUser from "../../hooks/useUser";
 import cards from "../../cards";
 import CardBack from "../../assets/card-back.png";
 
+
+
 const Table = () => {
-    const { gameMode } = useUser();
+    const { gameMode, resetedCards } = useUser();
     const [gameCards, setGameCards] = useState([]);
 
     const selectRandomCards = (quantity, array) => {
@@ -81,7 +83,7 @@ const Table = () => {
     useEffect(() => {
         gameCardsNumber = (gameMode.difficult === "easy" ? 5 : (gameMode.difficult === "medium" ? 7 : 9));
         setGameCards(selectRandomCards(gameCardsNumber, cards));
-    }, [gameMode]);
+    }, [gameMode, resetedCards]);
 
     return (
         <div className="table-container">
@@ -93,7 +95,7 @@ const Table = () => {
                             key={card.id}
                             name={card.name}
                             style={card.turned ? { backgroundImage: `url(${card.image})` } : { backgroundImage: `url(${CardBack})` }}
-                            onClick={!card.match && (() => foldCard(card))}
+                            onClick={!card.match ? (() => foldCard(card)) : undefined}
                         />
                     )
                 })

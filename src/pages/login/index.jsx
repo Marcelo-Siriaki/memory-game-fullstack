@@ -70,14 +70,15 @@ export function Radio2ButtonsGroup({ onChangeDisplay }) {
     );
 }
 
-export function BasicButtons() {
+export function BasicButtons({ btnType, btnName, onClick }) {
     return (
         <Stack spacing={2} direction="row">
             <Button
                 variant="outlined"
-                type="submit"
+                type={btnType}
+                onClick={onClick}
             >
-                Ready!
+                {btnName}
             </Button>
         </Stack>
     );
@@ -122,7 +123,11 @@ const Login = () => {
                             onChangeDisplay={handleSelectDisplay}
                         />
 
-                        <BasicButtons />
+                        <BasicButtons
+                            btnType="submit"
+                            btnName="Ready"
+
+                        />
                     </form>
                 </div>)
                 :
