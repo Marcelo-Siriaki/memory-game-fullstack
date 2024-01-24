@@ -4,7 +4,7 @@ import { BasicButtons } from "../../pages/login";
 import useUser from "../../hooks/useUser";
 
 const Sidebar = () => {
-    const { resetedCards, setResetedCards, allMatch, setAllMatch } = useUser();
+    const { resetedCards, setResetedCards, allMatch, setAllMatch, gameMode, setGameMode } = useUser();
     const [elapsedTime, setElapsedTime] = useState(0);
 
     let timer;
@@ -29,12 +29,6 @@ const Sidebar = () => {
         return () => clearInterval(timer);
     }, [resetedCards, allMatch]);
 
-    const handleReset = () => {
-        setResetedCards(true);
-        setAllMatch(false);
-        setElapsedTime(0);
-    }
-
     const formatTime = (timeInSeconds) => {
         const minutes = Math.floor(timeInSeconds / 60);
         const seconds = Math.floor(timeInSeconds % 60);
@@ -42,6 +36,13 @@ const Sidebar = () => {
 
         return `${minutes}:${String(seconds).padStart(2, "0")}.${String(centiseconds).padStart(2, "0")}`;
     };
+
+    const handleReset = () => {
+        setResetedCards(true);
+        setAllMatch(false);
+        setGameMode({ ...gameMode });
+        setElapsedTime(0);
+    }
 
     return (
         <nav className="sidebar-container">
