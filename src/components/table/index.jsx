@@ -31,19 +31,49 @@ const Table = () => {
 
     const foldCard = (card) => {
         const localCards = [...gameCards];
-        const cardIndex = localCards.findIndex(item => item.id === card.id);
-        localCards[cardIndex].turned = !localCards[cardIndex].turned;
+        const cardSelected = localCards.find(item => item.id === card.id);
 
-        const turnedCards = localCards.filter(cardLocal => cardLocal.turned);
-
-        if (turnedCards.length > 1) {
-            if (turnedCards[0].name === turnedCards[1].name) {
-
+        const onlyUnfoldCards = localCards.filter((cardLocal) => {
+            if (!cardLocal.match && cardLocal.turned) {
+                return cardLocal;
             }
+        });
+
+        if (onlyUnfoldCards.length > 1) return;
+
+        if (onlyUnfoldCards.length && onlyUnfoldCards[0].name === cardSelected.name) {
+
+            cardSelected.turned = !cardSelected.turned;
+            setGameCards(localCards);
+
+            if (cardSelected.id === onlyUnfoldCards[0].id) return; // impede a identif da carta clicada com ela mesma.
+
+            onlyUnfoldCards.push(cardSelected);
+            onlyUnfoldCards.forEach((turnedCard) => {
+                const index = localCards.findIndex(item => item.id === turnedCard.id);
+                localCards[index] = { ...localCards[index], match: true };
+            });
+
+            setGameCards(localCards);
+
+            return;
         }
 
+        cardSelected.turned = !cardSelected.turned;
         setGameCards(localCards);
 
+        if (onlyUnfoldCards.length && onlyUnfoldCards[0].name !== cardSelected.name) {
+
+            setTimeout(() => {
+                localCards.forEach((item) => {
+                    if (!item.match) {
+                        return item.turned = false;
+                    }
+                });
+
+                setGameCards([...localCards]);
+            }, 500);
+        }
     }
 
     let gameCardsNumber;
