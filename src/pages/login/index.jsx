@@ -15,9 +15,9 @@ import { useNavigate } from "react-router-dom";
 export function Radio3ButtonsGroup({ onChangeDifficult }) {
     return (
         <FormControl>
-            <FormLabel id="demo-radio-buttons-group-label">Difficult</FormLabel>
+            <FormLabel id="btn-difficult">Difficult</FormLabel>
             <RadioGroup
-                aria-labelledby="demo-radio-buttons-group-label"
+                aria-labelledby="btn-difficult"
                 defaultValue="female"
                 name="radio-buttons-group"
                 onChange={onChangeDifficult}
@@ -46,9 +46,9 @@ export function Radio3ButtonsGroup({ onChangeDifficult }) {
 export function Radio2ButtonsGroup({ onChangeDisplay }) {
     return (
         <FormControl>
-            <FormLabel id="demo-radio-buttons-group-label">Display Mode</FormLabel>
+            <FormLabel id="btn-display">Display Mode</FormLabel>
             <RadioGroup
-                aria-labelledby="demo-radio-buttons-group-label"
+                aria-labelledby="btn-display"
                 defaultValue="female"
                 name="radio-buttons-group"
                 onChange={onChangeDisplay}

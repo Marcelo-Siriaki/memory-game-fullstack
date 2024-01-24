@@ -7,7 +7,7 @@ import CardBack from "../../assets/card-back.png";
 
 
 const Table = () => {
-    const { gameMode, resetedCards } = useUser();
+    const { gameMode, resetedCards, setAllMatch, allMatch } = useUser();
     const [gameCards, setGameCards] = useState([]);
 
     const selectRandomCards = (quantity, array) => {
@@ -48,13 +48,21 @@ const Table = () => {
             cardSelected.turned = !cardSelected.turned;
             setGameCards(localCards);
 
-            if (cardSelected.id === onlyUnfoldCards[0].id) return; // impede a identif da carta clicada com ela mesma.
+            if (cardSelected.id === onlyUnfoldCards[0].id) return;
 
             onlyUnfoldCards.push(cardSelected);
             onlyUnfoldCards.forEach((turnedCard) => {
                 const index = localCards.findIndex(item => item.id === turnedCard.id);
                 localCards[index] = { ...localCards[index], match: true };
             });
+
+            const allCardsMatched = localCards.filter(item => item.match);
+
+            if (allCardsMatched.length === localCards.length) {
+                setAllMatch(true);
+                setGameCards(localCards);
+                return;
+            }
 
             setGameCards(localCards);
 

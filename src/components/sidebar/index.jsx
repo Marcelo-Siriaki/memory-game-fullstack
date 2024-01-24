@@ -1,15 +1,47 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.css";
 import { BasicButtons } from "../../pages/login";
 import useUser from "../../hooks/useUser";
 
 const Sidebar = () => {
-    const { resetedCards, setResetedCards } = useUser();
+    const { resetedCards, setResetedCards, allMatch, setAllMatch } = useUser();
+    const [elapsedTime, setElapsedTime] = useState(0);
+
+    let timer;
+
+    useEffect(() => {
+
+        if (allMatch) {
+            return;
+        }
+
+        if (resetedCards) {
+            setElapsedTime(0);
+            timer = setInterval(() => {
+                setElapsedTime((prevTime) => prevTime + 0.01);
+            }, 10);
+        } else {
+            timer = setInterval(() => {
+                setElapsedTime((prevTime) => prevTime + 0.01);
+            }, 10);
+        }
+
+        return () => clearInterval(timer);
+    }, [resetedCards, allMatch]);
 
     const handleReset = () => {
-        setResetedCards(!resetedCards)
-        console.log("Clicou");
+        setResetedCards(true);
+        setAllMatch(false);
+        setElapsedTime(0);
     }
+
+    const formatTime = (timeInSeconds) => {
+        const minutes = Math.floor(timeInSeconds / 60);
+        const seconds = Math.floor(timeInSeconds % 60);
+        const centiseconds = Math.floor((timeInSeconds % 1) * 100);
+
+        return `${minutes}:${String(seconds).padStart(2, "0")}.${String(centiseconds).padStart(2, "0")}`;
+    };
 
     return (
         <nav className="sidebar-container">
@@ -41,7 +73,7 @@ const Sidebar = () => {
 
             <div className="cronometer-container">
                 <h2 className="sidebar-list-title">Your Time:</h2>
-                <span className="sidebar-list-title">Running time</span>
+                <span className="sidebar-list-title">{formatTime(elapsedTime)}</span>
             </div>
 
             <BasicButtons

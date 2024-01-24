@@ -8,6 +8,7 @@ export function useUserProvider() {
   });
 
   const [resetedCards, setResetedCards] = useState(false);
+  const [allMatch, setAllMatch] = useState(false);
 
 
   return {
@@ -15,5 +16,7 @@ export function useUserProvider() {
     setGameMode,
     resetedCards,
     setResetedCards,
+    allMatch,
+    setAllMatch,
   }
 }

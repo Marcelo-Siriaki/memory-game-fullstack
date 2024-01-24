@@ -22,7 +22,6 @@
 
 .login-title-texts {
     color: rgb(190, 0, 0);
-    font-family: "Roboto", sans-serif;
 
     cursor: pointer;
 }
@@ -39,4 +38,9 @@
 
 .login-form-texts {
     color: rgb(190, 0, 0);
+}
+
+#btn-difficult,
+#btn-display {
+    color: rgb(95, 95, 161);
 }
