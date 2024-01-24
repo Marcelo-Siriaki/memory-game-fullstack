@@ -88,12 +88,11 @@ export function BasicButtons({ btnType, btnName, onClick }) {
 const Login = () => {
     const [mode, setMode] = useState(false);
     const navigate = useNavigate();
-    const { gameMode, setGameMode } = useUser();
+    const { gameMode, setGameMode, setCountdownModalOpen } = useUser();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setMode(false);
-        console.log(gameMode);
     }
 
     const handleSelectDifficult = (e) => {
@@ -106,6 +105,7 @@ const Login = () => {
 
     const handleStartGame = () => {
         navigate("/home");
+        setCountdownModalOpen(true);
     }
 
     return (

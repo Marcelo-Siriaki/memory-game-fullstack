@@ -9,6 +9,7 @@ export function useUserProvider() {
 
   const [resetedCards, setResetedCards] = useState(false);
   const [allMatch, setAllMatch] = useState(false);
+  const [countdownModalOpen, setCountdownModalOpen] = useState(false);
 
 
   return {
@@ -18,5 +19,7 @@ export function useUserProvider() {
     setResetedCards,
     allMatch,
     setAllMatch,
+    countdownModalOpen,
+    setCountdownModalOpen,
   }
 }
