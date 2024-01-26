@@ -1,10 +1,13 @@
 import React from "react";
 import "./styles.css";
-import { BasicButtons } from "../../pages/login";
+import { BasicButtons } from "../../pages/menu";
 import useUser from "../../hooks/useUser";
 import Cronometer from "../cronometer";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
+    const navigate = useNavigate();
+
     const {
         setResetedCards,
         setAllMatch,
@@ -27,12 +30,23 @@ const Sidebar = () => {
         setCronometerOn(false);
     }
 
+    const handleBackToMenu = () => {
+        setResetedCards(true);
+        setAllMatch(false);
+        setGameMode({ ...gameMode });
+        setElapsedTime(0);
+        setCountdown(3);
+        setCronometerOn(false);
+        navigate("/");
+    }
+
     return (
         <nav className="sidebar-container">
 
             <h1 className="sidebar-game-title">MEMORY GAME</h1>
             <main className="sidebar-main">
                 <h2 className="sidebar-list-title">BEST RECORDS</h2>
+                <span className="sidebar-list-subtitle">Level {gameMode.difficult}</span>
                 <div className="sidebar-list">
                     <span className="sidebar-span">1º - Marcelo: 10seg</span>
                     <span className="sidebar-span">1º - Marcelo: 10seg</span>
@@ -60,11 +74,18 @@ const Sidebar = () => {
                 <Cronometer />
             </div>
 
-            <BasicButtons
-                btnType="button"
-                btnName="Reset"
-                onClick={handleReset}
-            />
+            <div className="sidebar-btns-container">
+                <BasicButtons
+                    btnType="button"
+                    btnName="Reset"
+                    onClick={handleReset}
+                />
+                <BasicButtons
+                    btnType="button"
+                    btnName="Back to Menu"
+                    onClick={handleBackToMenu}
+                />
+            </div>
         </nav>
     )
 }

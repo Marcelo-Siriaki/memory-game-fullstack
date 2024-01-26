@@ -1,4 +1,4 @@
-.countdown-backdrop {
+.countdown-modal-backdrop {
     position: fixed;
     top: 0;
     left: 0;
@@ -9,5 +9,26 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 999;
+    z-index: 1;
+}
+
+.countdown-modal-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+
+    width: 200px;
+    height: 200px;
+
+    border-radius: 50%;
+    border: 20px rgb(26, 26, 190) solid;
+}
+
+.countdown-modal-txt {
+    color: rgb(26, 26, 190);
+    font-size: 56px;
+    font-weight: bold;
+
+    z-index: 3;
 }

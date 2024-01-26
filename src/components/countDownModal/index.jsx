@@ -27,9 +27,9 @@ const CountdownModal = () => {
     }, []);
 
     return (
-        <div className="countdown-backdrop">
-            <main className="countdown-container">
-                <div>{countdown}</div>
+        <div className="countdown-modal-backdrop">
+            <main className="countdown-modal-container">
+                <div className="countdown-modal-txt">{countdown}</div>
             </main>
         </div>
     )

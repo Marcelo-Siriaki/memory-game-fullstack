@@ -1,4 +1,4 @@
-.login-container {
+.menu-container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -10,7 +10,7 @@
     box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-.login-title-container {
+.menu-title-container {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -20,23 +20,23 @@
     height: 40%;
 }
 
-.login-title-texts {
+.menu-title-texts {
     color: rgb(190, 0, 0);
 
     cursor: pointer;
 }
 
-.login-title-texts:hover {
+.menu-title-texts:hover {
     transform: scale(1.1);
 }
 
-.login-form-mode {
+.menu-form-mode {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
 }
 
-.login-form-texts {
+.menu-form-texts {
     color: rgb(190, 0, 0);
 }
 

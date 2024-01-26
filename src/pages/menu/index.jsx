@@ -85,7 +85,7 @@ export function BasicButtons({ btnType, btnName, onClick }) {
 }
 
 
-const Login = () => {
+const Menu = () => {
     const [mode, setMode] = useState(false);
     const navigate = useNavigate();
     const { gameMode, setGameMode, setCountdownModalOpen } = useUser();
@@ -109,11 +109,11 @@ const Login = () => {
     }
 
     return (
-        <div className="login-container">
+        <div className="menu-container">
             {mode ?
-                (<div className="login-title-container">
+                (<div className="menu-title-container">
                     <form
-                        className="login-form-mode"
+                        className="menu-form-mode"
                         onSubmit={handleSubmit}
                     >
                         <Radio3ButtonsGroup
@@ -131,13 +131,13 @@ const Login = () => {
                     </form>
                 </div>)
                 :
-                (<div className="login-title-container">
+                (<div className="menu-title-container">
                     <h1
-                        className="login-title-texts"
+                        className="menu-title-texts"
                         onClick={handleStartGame}
                     >Start Game</h1>
                     <h1
-                        className="login-title-texts"
+                        className="menu-title-texts"
                         onClick={() => setMode(true)}
                     >
                         Mode
@@ -147,4 +147,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default Menu

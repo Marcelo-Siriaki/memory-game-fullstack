@@ -32,6 +32,11 @@
     font-size: 20px;
 }
 
+.sidebar-list-subtitle {
+    color: rgb(190, 0, 0);
+    font-size: 17px;
+}
+
 .sidebar-list {
     display: flex;
     flex-direction: column;
@@ -51,4 +56,11 @@
     align-items: center;
 
     height: 15%;
+}
+
+.sidebar-btns-container {
+    display: flex;
+    justify-content: space-evenly;
+
+    width: 100%;
 }
