@@ -97,7 +97,6 @@ const Menu = () => {
         try {
             const response = await instanceAxios.get(`/records?difficult=${gameMode.difficult}`);
             setRecords(response.data);
-            console.log(response.data);
 
         } catch (error) {
             console.log(error.message);
