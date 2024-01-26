@@ -7,7 +7,7 @@ import CardBack from "../../assets/card-back.png";
 
 
 const Table = () => {
-    const { gameMode, resetedCards, setAllMatch, allMatch } = useUser();
+    const { gameMode, resetedCards, setAllMatch } = useUser();
     const [gameCards, setGameCards] = useState([]);
 
     const selectRandomCards = (quantity, array) => {

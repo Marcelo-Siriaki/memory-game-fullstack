@@ -1,25 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./styles.css";
 import useUser from "../../hooks/useUser";
 
 const CountdownModal = () => {
 
-    const [countdown, setCountdown] = useState(3);
-    const { countdownModalOpen, setCountdownModalOpen } = useUser();
+    const { countdownModalOpen, setCountdownModalOpen, setCronometerOn, countdown, setCountdown } = useUser();
 
     useEffect(() => {
         let timer;
-        let localCount = countdown;
-        if (localCount <= 0) {
-
-            setCountdownModalOpen(false);
-            return;
+        if (countdownModalOpen && countdown > 0) {
+            timer = setInterval(() => {
+                setCountdown((prevTime) => {
+                    if (prevTime > 1) {
+                        return prevTime - 1
+                    } else {
+                        setCountdownModalOpen(false); // Essa state dentro do useEffect gera um warning. Investigar.
+                        clearInterval(timer);
+                        setCronometerOn(true);
+                        return 0;
+                    }
+                });
+            }, 1000);
         }
-        setInterval(() => {
-            timer = setCountdown((prevTime) => {
-                return prevTime - 1
-            });
-        }, 1000);
 
         return () => clearInterval(timer);
     }, []);

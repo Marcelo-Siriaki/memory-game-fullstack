@@ -1,47 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./styles.css";
 import { BasicButtons } from "../../pages/login";
 import useUser from "../../hooks/useUser";
+import Cronometer from "../cronometer";
 
 const Sidebar = () => {
-    const { resetedCards, setResetedCards, allMatch, setAllMatch, gameMode, setGameMode } = useUser();
-    const [elapsedTime, setElapsedTime] = useState(0);
+    const {
+        setResetedCards,
+        setAllMatch,
+        gameMode,
+        setGameMode,
+        setCountdownModalOpen,
+        setElapsedTime,
+        setCronometerOn,
+        setCountdown,
+    } = useUser();
 
-    let timer;
-
-    useEffect(() => {
-
-        if (allMatch) {
-            return;
-        }
-
-        if (resetedCards) {
-            setElapsedTime(0);
-            timer = setInterval(() => {
-                setElapsedTime((prevTime) => prevTime + 0.01);
-            }, 10);
-        } else {
-            timer = setInterval(() => {
-                setElapsedTime((prevTime) => prevTime + 0.01);
-            }, 10);
-        }
-
-        return () => clearInterval(timer);
-    }, [resetedCards, allMatch]);
-
-    const formatTime = (timeInSeconds) => {
-        const minutes = Math.floor(timeInSeconds / 60);
-        const seconds = Math.floor(timeInSeconds % 60);
-        const centiseconds = Math.floor((timeInSeconds % 1) * 100);
-
-        return `${minutes}:${String(seconds).padStart(2, "0")}.${String(centiseconds).padStart(2, "0")}`;
-    };
 
     const handleReset = () => {
         setResetedCards(true);
         setAllMatch(false);
         setGameMode({ ...gameMode });
+        setCountdownModalOpen(true);
         setElapsedTime(0);
+        setCountdown(3);
+        setCronometerOn(false);
     }
 
     return (
@@ -74,7 +57,7 @@ const Sidebar = () => {
 
             <div className="cronometer-container">
                 <h2 className="sidebar-list-title">Your Time:</h2>
-                <span className="sidebar-list-title">{formatTime(elapsedTime)}</span>
+                <Cronometer />
             </div>
 
             <BasicButtons

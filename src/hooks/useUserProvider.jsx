@@ -10,6 +10,9 @@ export function useUserProvider() {
   const [resetedCards, setResetedCards] = useState(false);
   const [allMatch, setAllMatch] = useState(false);
   const [countdownModalOpen, setCountdownModalOpen] = useState(false);
+  const [cronometerOn, setCronometerOn] = useState(false);
+  const [elapsedTime, setElapsedTime] = useState(0);
+  const [countdown, setCountdown] = useState(3);
 
 
   return {
@@ -21,5 +24,11 @@ export function useUserProvider() {
     setAllMatch,
     countdownModalOpen,
     setCountdownModalOpen,
+    cronometerOn,
+    setCronometerOn,
+    elapsedTime,
+    setElapsedTime,
+    countdown,
+    setCountdown,
   }
 }
