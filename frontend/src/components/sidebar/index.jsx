@@ -51,29 +51,11 @@ const Sidebar = () => {
                 <div className="sidebar-list">
                     {records.length ?
                         (records.map((item) => {
-                            return <span key={item.id} className="sidebar-span">1º - {item.player}: {item.record}</span>
+                            return <span key={item.id} className="sidebar-span">{item.player}: {item.record}</span>
                         })
                         ) : (
-                            <>
-                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                            </>)}
+                            <span className="sidebar-span">1º - Marcelo: 10seg</span>
+                        )}
 
                 </div>
             </main>
