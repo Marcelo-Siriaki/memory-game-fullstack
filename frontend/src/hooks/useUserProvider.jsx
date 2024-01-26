@@ -7,6 +7,8 @@ export function useUserProvider() {
     difficult: "easy"
   });
 
+  const [records, setRecords] = useState([]);
+
   const [resetedCards, setResetedCards] = useState(false);
   const [allMatch, setAllMatch] = useState(false);
   const [countdownModalOpen, setCountdownModalOpen] = useState(false);
@@ -30,5 +32,7 @@ export function useUserProvider() {
     setElapsedTime,
     countdown,
     setCountdown,
+    records,
+    setRecords,
   }
 }

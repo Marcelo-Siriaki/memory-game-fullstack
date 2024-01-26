@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import useUser from "../../hooks/useUser";
 import "./styles.css";
+import instanceAxios from "../../services/api"
 
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -88,10 +89,20 @@ export function BasicButtons({ btnType, btnName, onClick }) {
 const Menu = () => {
     const [mode, setMode] = useState(false);
     const navigate = useNavigate();
-    const { gameMode, setGameMode, setCountdownModalOpen } = useUser();
+    const { gameMode, setGameMode, setCountdownModalOpen, setRecords } = useUser();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
+        try {
+
+            const response = await instanceAxios.get(`/records?difficult=${mode.difficult}`);
+            setRecords(response.data);
+
+        } catch (error) {
+            console.log(error.message);
+        }
+
         setMode(false);
     }
 

@@ -17,6 +17,7 @@ const Sidebar = () => {
         setElapsedTime,
         setCronometerOn,
         setCountdown,
+        records,
     } = useUser();
 
 
@@ -48,24 +49,32 @@ const Sidebar = () => {
                 <h2 className="sidebar-list-title">BEST RECORDS</h2>
                 <span className="sidebar-list-subtitle">Level {gameMode.difficult}</span>
                 <div className="sidebar-list">
-                    <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                    <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                    <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                    <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                    <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                    <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                    <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                    <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                    <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                    <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                    <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                    <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                    <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                    <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                    <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                    <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                    <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                    <span className="sidebar-span">1º - Marcelo: 10seg</span>
+                    {records.length ?
+                        (records.map((item) => {
+                            return <span key={item.id} className="sidebar-span">1º - {item.player}: {item.record}</span>
+                        })
+                        ) : (
+                            <>
+                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
+                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
+                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
+                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
+                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
+                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
+                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
+                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
+                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
+                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
+                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
+                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
+                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
+                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
+                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
+                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
+                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
+                                <span className="sidebar-span">1º - Marcelo: 10seg</span>
+                            </>)}
+
                 </div>
             </main>
 
