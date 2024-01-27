@@ -91,17 +91,8 @@ const Menu = () => {
     const navigate = useNavigate();
     const { gameMode, setGameMode, setCountdownModalOpen, setRecords } = useUser();
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-
-        try {
-            const response = await instanceAxios.get(`/records?difficult=${gameMode.difficult}`);
-            setRecords(response.data);
-
-        } catch (error) {
-            console.log(error.message);
-        }
-
         setMode(false);
     }
 
@@ -113,9 +104,17 @@ const Menu = () => {
         setGameMode({ ...gameMode, showAll: e.target.value });
     }
 
-    const handleStartGame = () => {
-        navigate("/home");
-        setCountdownModalOpen(true);
+    const handleStartGame = async () => {
+
+        try {
+            const response = await instanceAxios.get(`/records?difficult=${gameMode.difficult}`);
+            setRecords(response.data);
+            navigate("/home");
+            setCountdownModalOpen(true);
+
+        } catch (error) {
+            console.log(error.message);
+        }
     }
 
     return (

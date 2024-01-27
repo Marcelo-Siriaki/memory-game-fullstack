@@ -47,16 +47,18 @@ const Sidebar = () => {
             <h1 className="sidebar-game-title">MEMORY GAME</h1>
             <main className="sidebar-main">
                 <h2 className="sidebar-list-title">BEST RECORDS</h2>
-                <span className="sidebar-list-subtitle">Level {gameMode.difficult}</span>
-                <div className="sidebar-list">
-                    {records.length ?
-                        (records.map((item) => {
-                            return <span key={item.id} className="sidebar-span">{item.player}: {item.record}</span>
-                        })
-                        ) : (
-                            <span className="sidebar-span">1º - Marcelo: 10seg</span>
-                        )}
+                <div className="sidebar-level-list">
+                    <span className="sidebar-list-subtitle">Level {gameMode.difficult}</span>
+                    <div className="sidebar-list">
+                        {records.length ?
+                            (records.map((item) => {
+                                return <span key={item.id} className="sidebar-span">{item.player}: {item.records}</span>
+                            })
+                            ) : (
+                                <span className="sidebar-span">1º - Marcelo: 59 seg</span>
+                            )}
 
+                    </div>
                 </div>
             </main>
 

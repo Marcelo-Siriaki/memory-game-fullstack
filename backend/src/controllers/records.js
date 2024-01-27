@@ -7,7 +7,7 @@ const showRecords = async (req, res) => {
         const records = await knex("players")
             .where({ difficult })
             .select("*")
-            .orderBy("records", "asc");
+            .orderBy("record", "asc");
 
         if (records.length < 1) {
             return res.json([]);
@@ -27,7 +27,8 @@ const addNewRecord = async (req, res) => {
     const {
         player,
         record,
-        difficult
+        difficult,
+        showAll
     } = req.body;
 
     try {
@@ -35,11 +36,11 @@ const addNewRecord = async (req, res) => {
         const records = await knex("players")
             .where({ difficult })
             .select("*")
-            .orderBy("records", "asc");
+            .orderBy("record", "asc");
 
         if (records.length < 15) {
             const newRecord = await knex("players")
-                .insert({ player, record, difficult })
+                .insert({ player, record, difficult, showall: showAll })
                 .returning("*");
 
             return res.status(201).json(newRecord[0]);
@@ -47,11 +48,11 @@ const addNewRecord = async (req, res) => {
 
         if (records.length === 15) {
 
-            const newRecordCompare = records.some(item => item.record > record);
+            const newRecordCompare = records.some(item => item.record > Number(record));
 
             if (newRecordCompare) {
                 const newRecord = await knex("players")
-                    .update({ player, record, difficult })
+                    .update({ player, record, difficult, showall: showAll })
                     .where({ id: records[14].id })
                     .returning("*");
 
@@ -59,9 +60,8 @@ const addNewRecord = async (req, res) => {
             }
         }
 
-
     } catch (error) {
-        res.status(500).json({ message: `${error.message}` });
+        res.status(500).json(error.message);
     }
 
 }

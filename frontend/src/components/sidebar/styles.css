@@ -20,7 +20,7 @@
 .sidebar-main {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
 
     width: 100%;
@@ -30,6 +30,12 @@
 .sidebar-list-title {
     color: rgb(190, 0, 0);
     font-size: 20px;
+}
+
+.sidebar-level-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .sidebar-list-subtitle {

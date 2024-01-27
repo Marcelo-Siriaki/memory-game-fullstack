@@ -1,0 +1,60 @@
+.new-record-register-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(192, 190, 190, 0.356);
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.new-record-register-modal-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    width: 50%;
+    height: 70%;
+    background-color: rgb(34, 34, 105);
+
+    border-radius: 20px;
+}
+
+.new-record-modal-title {
+    font-size: 56px;
+    font-weight: bold;
+}
+
+.new-record-input {
+    all: unset;
+
+    width: 70%;
+    height: 12%;
+    border-radius: 7px;
+
+    background-color: rgb(76, 72, 72);
+    color: black;
+    text-align: center;
+    font-size: large;
+}
+
+.new-record-modal-btn {
+    all: unset;
+
+    width: 50%;
+    height: 10%;
+    border-radius: 7px;
+
+    background-color: rgb(76, 72, 72);
+    color: black;
+    text-align: center;
+    font-size: large;
+
+    cursor: pointer;
+
+}
