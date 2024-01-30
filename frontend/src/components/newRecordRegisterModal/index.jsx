@@ -6,15 +6,21 @@ import instanceAxios from "../../services/api";
 
 const NewRecordRegisterModal = () => {
 
-    const { gameMode, setGameMode } = useUser();
+    const { gameMode, setGameMode, setIsNewRecord } = useUser();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
 
-            console.log(gameMode);
-            const response = await instanceAxios.post("/new-record", gameMode);
-            console.log(response);
+            const editedRecord = Number(gameMode.record.toFixed(2));
+            let sendData = { ...gameMode, record: editedRecord };
+
+            if (!gameMode.player) {
+                sendData = { ...sendData, player: "no name" };
+            }
+
+            const response = await instanceAxios.post("/new-record", { ...sendData, record: editedRecord });
+            setIsNewRecord(false);
 
         } catch (error) {
             console.log(error.message);
@@ -24,7 +30,10 @@ const NewRecordRegisterModal = () => {
 
     return (
         <div className="new-record-register-modal-backdrop">
-            <form className="new-record-register-modal-container">
+            <form
+                className="new-record-register-modal-container"
+                onSubmit={handleSubmit}
+            >
                 <h1 className="new-record-modal-title">New Record!</h1>
                 <input
                     className="new-record-input"
@@ -39,7 +48,6 @@ const NewRecordRegisterModal = () => {
                 <button
                     className="new-record-modal-btn"
                     type="submit"
-                    onClick={handleSubmit}
                 >
                     Save
                 </button>

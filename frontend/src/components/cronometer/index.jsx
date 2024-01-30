@@ -22,7 +22,7 @@ const Cronometer = () => {
             if (allMatch) {
                 const isRecord = records.some(item => elapsedTime < item.records);
 
-                if (isRecord || !records.length) {
+                if (isRecord || records.length < 15) {
                     setGameMode({ ...gameMode, record: elapsedTime });
                     return setIsNewRecord(true);
                 }

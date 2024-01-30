@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./styles.css";
 import { BasicButtons } from "../../pages/menu";
 import useUser from "../../hooks/useUser";
 import Cronometer from "../cronometer";
 import { useNavigate } from "react-router-dom";
+import instanceAxios from "../../services/api";
 
 const Sidebar = () => {
     const navigate = useNavigate();
@@ -18,13 +19,15 @@ const Sidebar = () => {
         setCronometerOn,
         setCountdown,
         records,
+        setRecords,
+        isNewRecord,
     } = useUser();
 
 
     const handleReset = () => {
         setResetedCards(true);
         setAllMatch(false);
-        setGameMode({ ...gameMode });
+        setGameMode({ ...gameMode, player: "" });
         setCountdownModalOpen(true);
         setElapsedTime(0);
         setCountdown(3);
@@ -34,12 +37,32 @@ const Sidebar = () => {
     const handleBackToMenu = () => {
         setResetedCards(true);
         setAllMatch(false);
-        setGameMode({ ...gameMode });
+        setGameMode({ ...gameMode, player: "" });
         setElapsedTime(0);
         setCountdown(3);
         setCronometerOn(false);
         navigate("/");
     }
+
+    const loadRecords = async () => {
+
+        try {
+
+            const response = await instanceAxios.get(`/records?difficult=${gameMode.difficult}`);
+            setRecords(response.data);
+
+        } catch (error) {
+            console.log(error);
+        }
+
+    }
+
+
+    useEffect(() => {
+
+        loadRecords();
+
+    }, [isNewRecord]);
 
     return (
         <nav className="sidebar-container">
@@ -70,7 +93,7 @@ const Sidebar = () => {
             <div className="sidebar-btns-container">
                 <BasicButtons
                     btnType="button"
-                    btnName="Reset"
+                    btnName="Reset / Start"
                     onClick={handleReset}
                 />
                 <BasicButtons
